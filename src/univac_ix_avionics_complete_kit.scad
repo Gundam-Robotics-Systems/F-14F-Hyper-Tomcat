@@ -225,4 +225,27 @@ module front_panel_latches() {
 module active_avionics_stack() {
     translate([x_pos_univac, 0, -10]) color(univac_color) cube(univac_ix_dim, center=true);
     translate([x_pos_hex, 0, -10]) color(hex_color) cube(hex_logic_dim, center=true);
-translate([x_pos_aegis, 0, -10]) color(aegis_color) cube(aegis_brg_dim, center=true);translate([x_pos_weather, 0, -10]) color(weather_color) cube(weather_dim, center=true);color(cooler_color) {for(x = card_x_positions) {translate([x - 6, 0, 0]) cube([2, bay_depth - 40, bay_height - 50], center=true);translate([x + 6, 0, 0]) cube([2, bay_depth - 40, bay_height - 50], center=true);}}}// ==========================================// RENDER TREE EXECUTION// ==========================================union() {weatherproof_chassis();arinc_chassis_holddown_screws();   // Front rack fastenersinternal_pcb_retention_screws();   // Module lock screwschassis_grounding_strap();          // Heavy EMI copper braid bonding linearinc_404_blind_mate_rear();arinc_fluid_stabs();internal_backplane_wiring();card_slot_sliders();front_panel_latches();active_avionics_stack();}
+translate([x_pos_aegis, 0, -10]) color(aegis_color) cube(aegis_brg_dim, center=true);
+translate([x_pos_weather, 0, -10]) color(weather_color) cube(weather_dim, center=true);
+color(cooler_color) {
+for(x = card_x_positions) {
+translate([x - 6, 0, 0]) cube([2, bay_depth - 40, bay_height - 50], center=true);
+translate([x + 6, 0, 0]) cube([2, bay_depth - 40, bay_height - 50], center=true);
+}
+}
+}
+// ==========================================
+// RENDER TREE EXECUTION
+// ==========================================
+union() {
+weatherproof_chassis();
+arinc_chassis_holddown_screws(); // Front rack fasteners
+internal_pcb_retention_screws(); // Module lock screws
+chassis_grounding_strap(); // Heavy EMI copper braid bonding line
+arinc_404_blind_mate_rear();
+arinc_fluid_stabs();
+internal_backplane_wiring();
+card_slot_sliders();
+front_panel_latches();
+active_avionics_stack();
+}
